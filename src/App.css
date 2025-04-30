@@ -4,6 +4,8 @@
   margin: 0;
 }
 
-body {
-  background-color: rgb(20, 20, 20);
+.App {
+  height: 100dvh;
+  width: 100%;
+  background-color: black;
 }
