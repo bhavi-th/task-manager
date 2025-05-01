@@ -1,11 +1,60 @@
+@font-face {
+  font-family: 'Jersey 15';
+  src: url('assets/Jersey15-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
-  font-family: sans-serif;
+  font-family: "Jersey 15", monospace;
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100dvh;
+  width: 100%;
+  background-color: black;
+  color: white;
 }
 
 .App {
   height: 100dvh;
+  padding: 2.5vmin;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5vmin;
+}
+
+fieldset {
+  height: 100%;
+}
+
+legend {
+  font-size: 4.5vmin;
+  margin-left: 2.5vmin;
+  padding-inline: 1rem;
+}
+
+#tasks {
+  grid-column: span 3;
+  padding: 1rem;
+}
+
+#task-input {
+  display: flex;
+  gap: 1rem;
+}
+
+input {
+  font-size: 5vmin;
   width: 100%;
-  background-color: black;
+  padding-left: 0.5rem;
+  outline: none;
+}
+
+button {
+  padding-inline: 2.5vmin;
+  font-size: 5vmin;
 }
