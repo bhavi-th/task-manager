@@ -48,11 +48,20 @@ legend {
   gap: 1rem;
 }
 
+#add-task {
+  position: absolute;
+  right: 5vmin;
+  opacity: 1;
+  transition: opacity 500ms linear;
+}
+
 input {
+  position: relative;
   font-size: 5vmin;
-  width: 100%;
+  width: 0px;
   padding-left: 0.5rem;
   outline: none;
+  transition: width 1s linear;
 }
 
 button {
@@ -60,11 +69,46 @@ button {
   font-size: 5vmin;
 }
 
-ol {
-  padding: 5vmin;
+ul {
+  list-style: none;
+  padding-top: 5vmin;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1vmin;
 }
 
 li {
-  font-size: 6vmin;
-  word-wrap: break-word;
+  font-size: 5vmin;
+  padding: 1.5vmin;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 2.5vmin;
+}
+
+li button {
+  font-size: 4vmin;
+  padding: 1vmin;
+  border: none;
+  border-radius: 5px;
+}
+
+.completed:hover {
+  background-color: green;
+  color: white;
+}
+
+.remove:hover {
+  background-color: red;
+  color: white;
+}
+
+li button:focus {
+  outline: 2.5px solid black;
 }
