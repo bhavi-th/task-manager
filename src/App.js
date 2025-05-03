@@ -1,20 +1,14 @@
 import './App.css';
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 function App() {
 
+  const [date, setDate] = useState(new Date());
+
   const input = useRef();
   const list = useRef();
-
-  function expandInput(e) {
-    e.target.previousElementSibling.style.width = "100%";
-    e.target.style.opacity = 0;
-    setTimeout(
-      () => {
-        document.getElementById("tasks").removeChild(e.target)
-      }, 1000
-    );
-  }
 
   function task(text) {
     const li = document.createElement('li');
@@ -53,14 +47,31 @@ function App() {
 
   return (
     <div className="App">
-      <fieldset>
+      <fieldset id="manager">
         <legend>Task Manager</legend>
+        <Calendar style={{ backgroundColor: "black" }} onChange={setDate} value={date} />
+        <p>
+          Upcomming Tasks
+          <span>0</span>
+        </p>
+        <p>
+          Completed Tasks
+          <span>0</span>
+        </p>
+        <p>
+          Incompleted Tasks
+          <span>0</span>
+        </p>
       </fieldset>
       <fieldset id="tasks">
         <legend>TO DO's</legend>
-        <input placeholder="Enter your task" ref={input} onKeyDown={handleSubmit} />
-        <button onClick={expandInput} id="add-task">Add task</button>
+        <p id="current-date">{date.toDateString()}</p>
         <ul ref={list}></ul>
+      </fieldset>
+      <fieldset id="list-form">
+        <legend>List Form</legend>
+        <input placeholder="Enter your task" ref={input} onKeyDown={handleSubmit} />
+        <button id="add-task" onClick={() => task(input.current.value)}>Add task</button>
       </fieldset>
     </div>
   );

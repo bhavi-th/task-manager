@@ -23,7 +23,7 @@ body {
   height: 100dvh;
   padding: 2.5vmin;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   gap: 2.5vmin;
 }
 
@@ -32,14 +32,63 @@ fieldset {
 }
 
 legend {
-  font-size: 4.5vmin;
+  font-size: 5.5vmin;
   margin-left: 2.5vmin;
-  padding-inline: 1rem;
+  padding-inline: 2.5vmin;
 }
+
+/* Manager */
+
+#manager {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#manager p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 5vmin;
+  margin: 1vmin 4vmin;
+}
+
+fieldset #current-date {
+  font-size: 5vmin;
+  justify-content: center;
+}
+
+/* Calendar */
+
+fieldset .react-calendar {
+  width: 95%;
+  margin-inline: 2.5%;
+  background: black;
+  text-decoration: none;
+  font-size: 4.5vmin;
+  border: 1px solid white;
+}
+
+fieldset .react-calendar__tile:hover {
+  background-color: white;
+  color: black;
+}
+
+fieldset .react-calendar__navigation *:hover {
+  background-color: white;
+  color: black;
+}
+
+fieldset .react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+}
+
+/* Tasks */
 
 #tasks {
   grid-column: span 3;
-  padding: 1rem;
+  padding-inline: 1rem;
   width: 100%;
 }
 
@@ -49,22 +98,28 @@ legend {
 }
 
 #add-task {
-  position: absolute;
-  right: 5vmin;
   opacity: 1;
   transition: opacity 500ms linear;
 }
 
 input {
   position: relative;
+  width: 100%;
+  background-color: black;
+  color: white;
+  border: 2px solid white;
   font-size: 5vmin;
-  width: 0px;
+  padding: 0.5vmin;
   padding-left: 0.5rem;
   outline: none;
   transition: width 1s linear;
 }
 
 button {
+  border: 1.5px solid white;
+  border-radius: 0px;
+  background-color: black;
+  color: white;
   padding-inline: 2.5vmin;
   font-size: 5vmin;
 }
@@ -111,4 +166,15 @@ li button {
 
 li button:focus {
   outline: 2.5px solid black;
+}
+
+/* List Form */
+
+#list-form {
+  grid-column: span 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  padding: 1vmin;
 }
