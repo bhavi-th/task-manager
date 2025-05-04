@@ -90,6 +90,7 @@ fieldset .react-calendar__month-view__weekdays__weekday abbr {
   grid-column: span 3;
   padding-inline: 1rem;
   width: 100%;
+  overflow: scroll;
 }
 
 #task-input {
@@ -100,28 +101,6 @@ fieldset .react-calendar__month-view__weekdays__weekday abbr {
 #add-task {
   opacity: 1;
   transition: opacity 500ms linear;
-}
-
-input {
-  position: relative;
-  width: 100%;
-  background-color: black;
-  color: white;
-  border: 2px solid white;
-  font-size: 5vmin;
-  padding: 0.5vmin;
-  padding-left: 0.5rem;
-  outline: none;
-  transition: width 1s linear;
-}
-
-button {
-  border: 1.5px solid white;
-  border-radius: 0px;
-  background-color: black;
-  color: white;
-  padding-inline: 2.5vmin;
-  font-size: 5vmin;
 }
 
 ul {
@@ -137,14 +116,32 @@ li {
   padding: 1.5vmin;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 0.25rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: space-between;
   align-items: center;
+}
+
+.text-container {
+  grid-column: span 2;
+}
+
+.text-container span {
+  font-weight: bold;
+}
+
+.text-container p {
+  font-size: 4vmin;
 }
 
 .buttons-container {
   display: flex;
   gap: 2.5vmin;
+}
+
+.time {
+  text-align: center;
+  font-size: 3.5vmin;
 }
 
 li button {
@@ -172,9 +169,40 @@ li button:focus {
 
 #list-form {
   grid-column: span 2;
+  padding: 1vmin;
+}
+
+form {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
-  padding: 1vmin;
+}
+
+input,
+textarea,
+select {
+  position: relative;
+  width: 100%;
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+  font-size: 5vmin;
+  padding: 0.5vmin;
+  padding-left: 0.5rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: 1px solid white;
+}
+
+button {
+  border: 1.5px solid white;
+  border-radius: 0px;
+  background-color: black;
+  color: white;
+  padding-inline: 2.5vmin;
+  font-size: 5vmin;
 }
