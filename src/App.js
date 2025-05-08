@@ -51,6 +51,8 @@ function App() {
   const [dateTime, setDateTime] = useState("");
   const [category, setCategory] = useState("Personal");
 
+  const [showForm, setShowForm] = useState(false);
+
   const list = useRef();
 
   function task({ id, taskName, description, dateTime, category }) {
@@ -78,14 +80,23 @@ function App() {
   function handleSubmit(e) {
     e.preventDefault();
     task({ id: taskCount, taskName, description, dateTime, category });
-    console.log(taskName, description, dateTime, category);
+    // e.target.parentNode.classList.add("collapsed");
+    setShowForm(prev => !prev);
   }
 
   return (
     <div className="App">
       <fieldset id="manager">
         <legend>Task Manager</legend>
-        <Calendar style={{ backgroundColor: "black" }} onChange={setDate} value={date} />
+        <Calendar style={{ backgroundColor: "black" }} onChange={setDate} value={date}
+          tileClassName={({ date, view }) => {
+            if (view === "month") {
+              return todos.some(todo => new Date(todo.dateTime).toDateString() === date.toDateString())
+                ? "highlighted-date"
+                : "";
+            }
+          }}
+        />
         <p>
           Upcomming Tasks
           <span>{upcomingCount}</span>
@@ -105,10 +116,23 @@ function App() {
       </fieldset>
       <fieldset id="tasks">
         <legend>TO DO's</legend>
-        <p id="current-date">{date.toDateString()}</p>
+        <div id="todos-header">
+          <p id="current-date">{date.toDateString()}</p>
+          <button
+            id="toggle-form"
+            onClick={() => setShowForm(prev => !prev)}
+          >
+            {showForm ? "Close Form" : "Add Task"}
+          </button>
+        </div>
+
         <ul ref={list}>
-          {todos.map(todo =>
-            <li key={todo.id} data-id={todo.id}>
+          {todos.filter(todo => {
+            const taskDate = new Date(todo.dateTime).toDateString();
+            const selectedDate = date.toDateString();
+            return taskDate === selectedDate;
+          }).map(todo => (
+            <li key={todo.id} data-id={todo.id} className={todo.completed ? "completed-task" : ""}>
               <div className="text-container">
                 <span style={{ textDecoration: todo.completed ? "line-through" : "none" }}>{todo.taskName}</span>
                 <p style={{ textDecoration: todo.completed ? "line-through" : "none" }}>{todo.description}</p>
@@ -171,11 +195,12 @@ function App() {
                 }}>Remove</button>
               </div>
               <span className="time">{todo.dateTime.substring(11, 16)}</span>
+              <span className="category">{todo.category}</span>
             </li>
-          )}
+          ))}
         </ul>
       </fieldset>
-      <fieldset id="list-form">
+      <fieldset id="list-form" className={showForm ? "expanded" : "collapsed"}>
         <legend>List Form</legend>
         <form onSubmit={handleSubmit}>
           <input placeholder="Enter your task" onChange={(e) => setTaskName(e.target.value)} value={taskName} required />
