@@ -9,7 +9,7 @@ function App() {
 
   const [upcomingCount, setUpcomingCount] = useState(0);
   const [pendingCount, setPendingCount] = useState(0);
-
+  const [Manager, setManager] = useState("");
 
   const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todo")) === null ? [] : JSON.parse(localStorage.getItem("todo")));
   if (todos === null) {
@@ -84,10 +84,22 @@ function App() {
     setShowForm(prev => !prev);
   }
 
+  function showManager(e){
+    setManager("show-manager");
+  }
+
+  function closeManager(e){
+    setManager("");
+  }
+
   return (
     <div className="App">
-      <fieldset id="manager">
+      <fieldset id="manager" className={Manager}>
         <legend>Task Manager</legend>
+        <button className='hamburger close-manager' onClick={(e)=>closeManager(e)}>
+          <div></div>
+          <div></div>
+        </button>
         <Calendar style={{ backgroundColor: "black" }} onChange={setDate} value={date}
           tileClassName={({ date, view }) => {
             if (view === "month") {
@@ -117,12 +129,20 @@ function App() {
       <fieldset id="tasks">
         <legend>TO DO's</legend>
         <div id="todos-header">
+          <button className="hamburger" onClick={(e)=>showManager(e)}>
+            <div></div>
+            <div></div>
+            <div></div>
+          </button>
           <p id="current-date">{date.toDateString()}</p>
           <button
             id="toggle-form"
             onClick={() => setShowForm(prev => !prev)}
           >
             {showForm ? "Close Form" : "Add Task"}
+          </button>
+          <button id="mini-toggle-form" onClick={()=>{setShowForm(prev=>!prev)}}>
+            Add Task
           </button>
         </div>
 
@@ -202,6 +222,10 @@ function App() {
       </fieldset>
       <fieldset id="list-form" className={showForm ? "expanded" : "collapsed"}>
         <legend>List Form</legend>
+        <button className='hamburger close-form' onClick={()=>setShowForm(prev=>!prev)}>
+          <div></div>
+          <div></div>
+        </button>
         <form onSubmit={handleSubmit}>
           <input placeholder="Enter your task" onChange={(e) => setTaskName(e.target.value)} value={taskName} required />
           <textarea rows="8" placeholder="Enter the description of the task" onChange={(e) => setDescription(e.target.value)} value={description} required></textarea>

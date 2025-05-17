@@ -38,6 +38,7 @@ legend {
 /* Manager */
 
 #manager {
+  width: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -64,11 +65,12 @@ fieldset #current-date {
 }
 
 fieldset .react-calendar {
-  width: 95%;
-  margin-inline: 2.5%;
+  height:52.5vmin;
+  width: 50vmin;
+  line-height: 0vmin;
   background: black;
   text-decoration: none;
-  font-size: 4.5vmin;
+  font-size: 3.25vmin;
   border: 1px solid white;
 }
 
@@ -79,6 +81,16 @@ fieldset .react-calendar__tile:hover {
 
 fieldset .react-calendar__navigation {
   margin-bottom: 0;
+  height:10vmin;
+}
+
+fieldset .react-calendar__navigation button {
+  min-width:5vmin;
+  height:10vmin;
+}
+
+.react-calendar__navigation__label{
+  font-size: 3.5vmin;
 }
 
 fieldset .react-calendar__navigation *:hover {
@@ -88,6 +100,10 @@ fieldset .react-calendar__navigation *:hover {
 
 fieldset .react-calendar__month-view__weekdays__weekday abbr {
   text-decoration: none;
+}
+
+fieldset .react-calendar__tile {
+  padding:4vmin 2vmin;
 }
 
 fieldset .react-calendar__tile--now {
@@ -113,6 +129,10 @@ fieldset .react-calendar__tile--now {
 #task-input {
   display: flex;
   gap: 1rem;
+}
+
+.hamburger, #mini-toggle-form{
+  display: none;
 }
 
 #add-task {
@@ -243,8 +263,75 @@ button {
   #list-form {
     position: absolute;
     top: 0;
-    /* left: 0; */
     background-color: rgba(0, 0, 0, 0.9);
     width: 95%;
+  }
+
+  .close-form{
+    position: absolute;
+    top:0;
+    right:1vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:1vmin;
+    padding: 2vmin;
+    cursor: pointer;
+  }
+
+  .close-form *{
+    height:0.5vmin;
+    width:5vmin;
+    background-color: white;
+  }
+
+}
+
+@media (max-width:720px){
+  #manager{
+    position: absolute;
+    visibility: hidden;
+    overflow: hidden;
+  }
+
+  #manager .react-calendar{
+    align-self: center;
+  }
+
+  #manager.show-manager{
+    visibility: visible;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 95%;
+  }
+
+  .close-manager{
+    position: absolute;
+    top:0;
+    right:1vmin;
+  }
+
+  .hamburger{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:1vmin;
+    padding: 2vmin;
+    cursor: pointer;
+  }
+
+  .hamburger *{
+    height:0.5vmin;
+    width:5vmin;
+    background-color: white;
+  }
+
+  #toggle-form{
+    display: none;
+  }
+
+  #mini-toggle-form{
+    display: flex;
+    align-items: center;
   }
 }
