@@ -145,7 +145,7 @@ ul {
   padding-top: 5vmin;
   display: flex;
   flex-direction: column-reverse;
-  gap: 1vmin;
+  gap: 6.5vmin;
 }
 
 li {
