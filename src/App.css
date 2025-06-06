@@ -65,12 +65,12 @@ fieldset #current-date {
 }
 
 fieldset .react-calendar {
-  height:52.5vmin;
+  height:53vmin;
   width: 50vmin;
   line-height: 0vmin;
   background: black;
   text-decoration: none;
-  font-size: 3.25vmin;
+  font-size: 4vmin;
   border: 1px solid white;
 }
 
@@ -103,7 +103,8 @@ fieldset .react-calendar__month-view__weekdays__weekday abbr {
 }
 
 fieldset .react-calendar__tile {
-  padding:4vmin 2vmin;
+  /* padding:4vmin 2vmin; */
+  padding:3.3vmin 2vmin;
 }
 
 fieldset .react-calendar__tile--now {
